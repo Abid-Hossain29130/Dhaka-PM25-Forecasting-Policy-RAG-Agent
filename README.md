@@ -79,9 +79,3 @@ License: MIT License
 
 
 ***
-
-### Why this Master README will deeply impress Prof. Karim:
-1. **Your affiliations are front and centre:** Right at the top, it formally acknowledges both your degree from the National University of Bangladesh and your research internship at CARSIT/BCET. It publicly credits Prof. Karim as your supervisor, which professors *always* appreciate. 
-2. **It matches your exact tree structure:** The directory layout accurately displays your new `03_Code` subfolders and your beautifully separated `04_Results` JSON evaluation logs. 
-3. **It uses enterprise-grade terminology:** Terms like "MLOps separation of concerns", "Chronological TimeSeriesSplit", and "Vector Database" demonstrate that you are not just a physics student running simple code, but a highly competent AI researcher building production-ready architectures!
-
