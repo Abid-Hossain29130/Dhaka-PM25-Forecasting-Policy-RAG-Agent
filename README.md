@@ -70,7 +70,6 @@ If you use this repository for academic work, please cite:
 @thesis{Hossain2026DhakaPM25,
   author = {Hossain, Abid},
   title = {From Prediction to Policy: An Explainable ML Framework for Health Risk Assessment and a RAG-LLM Agent for Urban Air Quality Management in Dhaka},
-  school = {National University of Bangladesh},
   institution = {Brit College of Engineering & Technology (UK)},
   note = {Research Internship supervised by Prof. Dr. Karim Mohammed Rezaul},
   year = {2026}
