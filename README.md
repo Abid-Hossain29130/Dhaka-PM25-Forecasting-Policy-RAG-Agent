@@ -61,7 +61,7 @@ If you use this repository for academic work, please cite:
 @thesis{Hossain2026DhakaPM25,
   author = {Hossain, Abid},
   title = {From Prediction to Policy: An Explainable ML Framework for Health Risk Assessment and a RAG-LLM Agent for Urban Air Quality Management in Dhaka},
-  school = {[Your University Name]},
+  school = {[National University of Bangladesh & Brit College of Engineering & Technology]},
   year = {2026}
 }
 ```
@@ -72,4 +72,4 @@ For questions or collaboration opportunities, please reach out via GitHub Issues
 ---
 **Last Updated:** June 2026  
 **Status:** Active Development  
-**License:** [Add your license here]
+**License:** []
