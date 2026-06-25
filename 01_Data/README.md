@@ -1,63 +1,54 @@
-# 📊 Data Directory (`01_Data/`)
+# 📊 Data Directory (`/01_Data`)
 
-## Overview
-This directory contains all raw and processed datasets used in the PM₂.₅ forecasting pipeline. It serves as the single source of truth for data provenance, integrity, and reproducibility.
-
-## 📁 Subdirectories
-
-### `/Raw/`
-**Contents:** Original, uncleaned telemetry and meteorological boundary files  
-**Data Volume:** 227,000+ rows of time-series observations  
-**Sources:**
-- **OpenAQ Ground Monitoring:** Direct PM₂.₅ mass concentration measurements (μg/m³) from 8-12 monitoring stations across Dhaka
-- **Open-Meteo Historical API:** Boundary layer meteorological variables (temperature, relative humidity, wind speed, atmospheric pressure)
-- **NASA MERRA-2 Satellite Reanalysis:** Planetary boundary layer height (PBLh), surface wind components, and moist static energy fields
-
-**Purpose:** Preserves the raw, unaltered datasets to enable full reproducibility and auditability of the data cleaning pipeline. Reviewers can verify that no selective filtering or cherry-picking has occurred.
-
-**Note:** These files are intentionally unprocessed to demonstrate data provenance compliance with academic publishing standards.
+## 📌 Overview
+This directory contains all raw and processed datasets used in the PM₂.₅ forecasting and geospatial health risk pipeline. It serves as the single source of truth for data provenance, integrity, and reproducibility.
 
 ---
 
-### `/Processed/`
-**Contents:** Fully fused, timezone-normalized, and feature-engineered datasets ready for model training  
+## 📁 Directory Guide
+
+### 1️⃣ `/Raw/`
+**Contents:** Original, uncleaned telemetry, meteorological boundary files, and geospatial administrative boundaries.
+**Data Volume:** 227,000+ rows of initial time-series observations.
+
+**Authoritative Sources:**
+- **OpenAQ Ground Monitoring:** Direct PM₂.₅ mass concentration measurements (μg/m³) from 3 active monitoring stations across Dhaka (e.g., US Embassy Baridhara, DoE Motijheel, DoE Gulshan).
+- **Open-Meteo Historical API:** Boundary layer meteorological variables (temperature, relative humidity, wind speed, wind direction, precipitation, boundary layer height).
+- **NASA MERRA-2 Satellite Reanalysis:** Aerosol Optical Depth (AOD) extinction at 550 nm and satellite-simulated surface PM₂.₅ estimates.
+- **HDX & BBS Census:** Raw administrative shapefiles and population data.
+
+**Purpose:** Preserves the raw, unaltered datasets to enable full reproducibility of the data fusion pipeline. Reviewers can verify that no selective filtering or cherry-picking has occurred prior to programmatic cleaning.
+
+### 2️⃣ `/Processed/`
+**Contents:** Fully fused, timezone-normalized, and feature-engineered datasets ready for model training and spatial interpolation.
+
 **Key Files:**
-- **`master_hourly.csv`** – Hourly-resolution merged dataset combining all three data sources
-  - Columns: `timestamp`, `PM25_ugm3`, `temperature_K`, `humidity_pct`, `wind_speed_ms`, `pblh_m`, `other_features`
-  - Timezone: UTC+6 (Bangladesh Standard Time)
-  - Handling: Forward-filled NaN values with max 6-hour gap tolerance; observations beyond threshold removed
-  
-- **`master_daily_base.csv`** – Daily aggregations ready for supervised learning
-  - Rows: 907 daily samples (2021–2024)
-  - Target: Next-day PM₂.₅ concentration (24-hour ahead forecast)
-  - Features: Previous-day statistics (min, max, mean, std, lagged values), meteorological drivers, periodic indicators (day-of-week, month, season)
-  - Fully balanced across seasons and years to prevent temporal bias
+- **`master_hourly.csv`** – Hourly-resolution merged dataset.
+  * **Rows:** 21,937 valid hourly records.
+  * **Timezone:** Normalized from UTC to UTC+6 (Bangladesh Standard Time) to align diurnal emissions with local meteorology.
+  * **Quality Control:** Pruned exclusively using physical sensor constraints (values <0 or >999 μg/m³ removed). 
+- **`master_daily_base.csv`** – Daily aggregations ready for supervised learning.
+  * **Rows:** 907 target-ready daily samples spanning August 1, 2022, to January 31, 2025.
+  * **Target:** Next-day PM₂.₅ concentration (T+24h forecast) generated via rigorous `shift(-1)` alignment.
+  * **Features:** 25 optimized predictors including autoregressive lags, meteorological boundary conditions, satellite aerosol loading, and deterministic diurnal micro-physics features.
+- **`bgd_admin_boundaries.shp` (alongside `.dbf`, `.shx`, `.prj`)** – HDX Thana-level administrative boundaries.
+  * **Geometry:** 92 administrative Thanas of the Dhaka district.
+  * **Purpose:** Used for Inverse Distance Weighting (IDW) spatial interpolation to calculate localized Attributable Fraction (AF%) health risks.
 
-- **`bgd_admin_boundaries.shp` (+ `.dbf`, `.shx`, `.prj`)** – HDX (Humanitarian Data Exchange) Thana-level administrative boundaries
-  - Geometry: 92 Thanas (administrative subdivisions) of Dhaka division
-  - CRS: EPSG:4326 (WGS84)
-  - Used for: Inverse Distance Weighting (IDW) spatial interpolation of point forecasts to calculate district-level Attributable Fraction (AF %) for health impact assessment
+---
 
-
-
-## 🔄 Data Pipeline Flow
-```
-Raw Files → Cleaning & Validation → Hourly Fusion → Daily Aggregation → Spatial Preparation → Model-Ready Dataset
-```
-
-## ✅ Data Quality Assurance
-- **Completeness:** 94.2% non-null after forward-fill imputation
-- **Outlier Detection:** IQR-based removal; extreme values flagged in preprocessing logs
-- **Temporal Alignment:** All timestamps reconciled to UTC+6
-- **Validation:** Cross-checked against OpenAQ public exports and NASA EarthData portal exports
+## ✅ Data Quality Assurance & MLOps Strictures
+To prevent the artificial inflation of predictive accuracy (a common flaw in air quality literature), strict data-cleansing parameters were enforced:
+- **Completeness Threshold:** A strict ≥75% daily completeness threshold (minimum 18 valid hours per day) was enforced to prevent uncertainty inflation when calculating daily statistics.
+- **Outlier Handling (No IQR):** No statistical IQR dropping was performed in order to preserve real-world extreme inversion episodes. Only physically impossible sensor artifacts were pruned.
+- **Leakage-Free Imputation:** No forward-fill imputation was applied globally. XGBoost natively handles sparse data, while baseline models utilized strict fold-internal median imputation during chronological validation to prevent temporal leakage.
+- **Contiguity:** The final array was programmatically asserted to cover 908 consecutive days with zero gaps.
 
 ## 📝 Usage Instructions for Reviewers
-1. Start with `/Raw/` to verify data sources and original granularity
-2. Review the cleaning pipeline documentation in `/03_Code/` to understand transformations
-3. Use `/Processed/master_daily_base.csv` as the training dataset
-4. Use `/bgd_admin_boundaries.shp` for spatial interpolation validation
+1. Start with the `/Raw/` folder to verify initial data granularity.
+2. Review the data engineering logic in `/03_Code/Data Engineering & Exploration/` to trace the ETL process.
+3. Use `/01_Data/Processed/master_daily_base.csv` as the explicit target matrix for reproducing the $R^2 = 0.740$ benchmark.
+4. Call upon the `/Processed/` shapefiles to replicate the Folium choropleth mapping.
 
 ---
-**Last Updated:** June 2026  
-**Data Custodian:** [Your Name]  
-**License:** [CC-BY-4.0 or applicable license]
+**License:** MIT License
