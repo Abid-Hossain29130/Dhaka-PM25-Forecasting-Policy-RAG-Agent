@@ -10,19 +10,19 @@ This directory contains the statutory documents and AI-optimized embeddings that
 **Documents:**
 
 1. **Bangladesh Air Pollution Control Rules 2022 (APCR 2022)**
-   - Filename: `APCR_2022_Bangladesh.pdf`
+   - Filename: `bangladesh-sro-225.pdf`
    - Authority: Department of Environment (DoE), Bangladesh
    - Scope: National air quality standards, emission limits, compliance protocols, and enforcement mechanisms
    - Relevance: Defines PM₂.₅ ambient air quality standards and industrial emission thresholds
 
 2. **National Air Quality Management Plan 2024–2030 (NAQMP 2024-2030)**
-   - Filename: `NAQMP_2024_2030_Bangladesh.pdf`
+   - Filename: `Bangladesh National Air Quality Management Plan 2024-2030.pdf`
    - Authority: Ministry of Environment, Forest and Climate Change (MoEFCC)
    - Scope: Strategic roadmap for air quality improvement, sectoral emission reduction targets, monitoring infrastructure expansion
    - Relevance: Policy-level interventions and sector-specific mitigation strategies (transport, industry, brick kilns, power generation)
 
 3. **WHO 2021 Air Quality Guidelines**
-   - Filename: `WHO_AirQualityGuidelines_2021.pdf`
+   - Filename: `WHO global_Air_Quality_Guildlines_eng.pdf`
    - Authority: World Health Organization (WHO)
    - Scope: Global health-based PM₂.₅ interim targets and final guideline values
    - Relevance: International benchmarks for health-protective air quality levels; used to contextualize Dhaka's compliance gap
