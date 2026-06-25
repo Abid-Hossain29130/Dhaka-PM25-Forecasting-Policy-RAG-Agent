@@ -72,4 +72,4 @@ For questions or collaboration opportunities, please reach out via GitHub Issues
 ---
 **Last Updated:** June 2026  
 **Status:** Active Development  
-**License:** []
+**License:** [MIT License](LICENSE)
