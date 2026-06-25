@@ -1,0 +1,75 @@
+{
+  "total_scoreable_units": 33,
+  "faithfulness_lexical_baseline": 0.1212,
+  "faithfulness_unit_scores": {
+    "mean": 0.589,
+    "min": 0.4057,
+    "max": 0.8383,
+    "threshold_used": 0.42,
+    "units_above_threshold": 32,
+    "total_units": 33
+  },
+  "answer_relevance_detail": {
+    "units_sampled": 12,
+    "per_unit_sims": [
+      0.63,
+      0.687,
+      0.66,
+      0.708,
+      0.838,
+      0.663,
+      0.518,
+      0.621,
+      0.406,
+      0.585,
+      0.526,
+      0.579
+    ],
+    "threshold_used": 0.5
+  },
+  "context_precision_detail": [
+    {
+      "source": "NAQMP-2024-2030",
+      "heading": "STRENGTHENING AIR QUALITY GOVERNANCE",
+      "page": 28,
+      "cited": true,
+      "method": "source_label"
+    },
+    {
+      "source": "APCR-2022-SRO",
+      "heading": "THE BANGLADESH GAZETTE",
+      "page": 12747,
+      "cited": true,
+      "method": "source_label"
+    },
+    {
+      "source": "APCR-2022-SRO",
+      "heading": "THE BANGLADESH GAZETTE",
+      "page": 12741,
+      "cited": true,
+      "method": "source_label"
+    },
+    {
+      "source": "WHO-AQG-2021",
+      "heading": "Table 3.5. Studies on long-term PM<sub>2.5</sub> exposure an",
+      "page": 82,
+      "cited": true,
+      "method": "source_label"
+    },
+    {
+      "source": "WHO-AQG-2021",
+      "heading": "3.3.2 Recommended AQG level for short-term exposure to PM<su",
+      "page": 93,
+      "cited": true,
+      "method": "source_label"
+    }
+  ],
+  "eval_config_snapshot": {
+    "embedding_model": "all-MiniLM-L6-v2 (ChromaDB built-in, 384-dim)",
+    "faithfulness_threshold": 0.42,
+    "relevance_threshold": 0.5,
+    "precision_threshold": 0.8,
+    "hallucination_threshold": 0.05,
+    "baseline_context_recall": 0.797
+  }
+}
