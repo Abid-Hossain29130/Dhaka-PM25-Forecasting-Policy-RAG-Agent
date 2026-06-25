@@ -4,7 +4,7 @@
 **Research Supervisor:** Prof. Dr. Karim Mohammed Rezaul  
 
 **Institutional Affiliations:**
-* **Research Conducted In affiliation with :** Centre for Applied Research in Software & IT (CARSIT), Brit College of Engineering & Technology, UK (Research Internship)
+* **Research Conducted inn affiliation with :** Centre for Applied Research in Software & IT (CARSIT), Brit College of Engineering & Technology, UK (Research Internship)
 
 
 ---
