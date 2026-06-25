@@ -4,8 +4,8 @@
 **Research Supervisor:** Prof. Dr. Karim Mohammed Rezaul  
 
 **Institutional Affiliations:**
-* **Research Conducted At:** Centre for Applied Research in Software & IT (CARSIT), Brit College of Engineering & Technology, UK (Research Internship)
-* **Degree Awarding Body:** National University of Bangladesh (BSc Physics)
+* **Research Conducted In affiliation with :** Centre for Applied Research in Software & IT (CARSIT), Brit College of Engineering & Technology, UK (Research Internship)
+
 
 ---
 
