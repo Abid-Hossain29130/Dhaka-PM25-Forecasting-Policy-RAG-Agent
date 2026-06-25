@@ -38,9 +38,7 @@ This directory contains all raw and processed datasets used in the PM₂.₅ for
   - CRS: EPSG:4326 (WGS84)
   - Used for: Inverse Distance Weighting (IDW) spatial interpolation of point forecasts to calculate district-level Attributable Fraction (AF %) for health impact assessment
 
-- **`train_test_split.csv`** – Index mapping for strict temporal cross-validation
-  - Prevents data leakage by ensuring training set (2021–2023) and test set (2024) are chronologically separated
-  - Reproducible random seed: `42`
+
 
 ## 🔄 Data Pipeline Flow
 ```
