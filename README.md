@@ -1,5 +1,7 @@
 # 🌍 Dhaka PM₂.₅ Forecasting & Policy-Auditing RAG Agent
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Abid-Hossain29130/Dhaka-PM25-Forecasting-Policy-RAG-Agent/blob/main/MASTER_IMPLEMENTATION_DHAKA_PM25.ipynb)
+
 **Author:** Abid Hossain  
 **Research Supervisor:** Prof. Dr. Karim Mohammed Rezaul  
 
@@ -40,10 +42,10 @@ To ensure strict MLOps separation of concerns, the heavy data engineering, stand
 │   ├── 📁 Original_PDFs/        # Raw statutory documents (APCR 2022, NAQMP 2024-2030, WHO 2021)
 │   └── 📁 Markdown_Embeddings/  # AI-optimized plain-text versions used for ChromaDB vector indexing
 ├── 📁 03_Code/
-│   ├── 📁 Data Engineering & Exploration/
-│   ├── 📁 Model Training & Validation/
-│   ├── 📁 Geospatial Mapping & Health Risk/
-│   └── 📁 RAG Policy Agent/
+│   ├── 📁 01_Data_Engineering_and_Exploration/
+│   ├── 📁 02_Model_Training_and_Validation/
+│   ├── 📁 03_Geospatial_Mapping_and_Health_Risk/
+│   └── 📁 04_RAG_Policy_Agent/
 ├── 📁 04_Results/
 │   ├── 📝 EAAB_*.md             # Generated policy briefs across 3 weather scenarios
 │   └── 📊 *_eval_diagnostics.json # Raw RAGAS-Proxy semantic evaluation logs proving 0.0% hallucinations
@@ -61,8 +63,11 @@ To ensure strict MLOps separation of concerns, the heavy data engineering, stand
     LLM Orchestration: openai/gpt-oss-120b via the Groq API (Temperature = 0.3)
     Benchmark Performance: R2=0.740 (Outperforming the temporal persistence baseline by +2.7% skill score)
 
-⚖️ Data and Code Availability Statement
-The datasets and codebase provided here are available for academic peer review and reproducibility. Raw telemetry data was originally sourced from the OpenAQ platform, Open-Meteo Historical API, and the NASA Giovanni EarthData portal. Note: Massive raw data files (like the 98 MB OpenAQ telemetry and the HDX shapefiles) have been compressed into .zip archives inside the /01_Data/Raw/ directory to bypass browser upload limits while preserving exact provenance.
+## ⚖️ Software and Data Availability Statement
+The datasets and codebase provided here are available for academic peer review and reproducibility.
+* **Software Availability:** The master implementation is written in Python and provided as a Google Colab executable notebook to ensure environment consistency.
+* **Data Provenance:** Raw telemetry data was originally sourced from the OpenAQ platform, Open-Meteo Historical API, and the NASA Giovanni EarthData portal. Massive raw data files (like the 98 MB OpenAQ telemetry and the HDX shapefiles) have been compressed into `.zip` archives inside the `/01_Data/Raw/` directory to bypass browser upload limits while preserving exact provenance.
+
 GitHub Profile: https://github.com/Abid-Hossain29130
 ✍️ Citation
 If you use this repository for academic work, please cite:
